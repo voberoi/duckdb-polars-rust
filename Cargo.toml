@@ -6,3 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+arrow2 = "0.14.2"
+libduckdb-sys = { version = "0.6.0", features = ["bundled"] }
+polars = "0.25.1"
