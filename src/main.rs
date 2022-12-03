@@ -184,6 +184,32 @@ fn main() {
 
             record_count += arrow_array.len();
         }
+
+        // I think we have actually have to call duckdb_query_arrow one more time.
+        // We don't care about the result -- it cleans up/frees the previous results
+        // it returns.
+        //
+        // See: https://duckdb.org/docs/api/c/api#duckdb_query_arrow_array
+        //
+        // The docs don't state this situation specifically, but if that call frees
+        // the previous `out_array`, then presumably we'd have a memory leak if
+        // we didn't do this.
+        //
+        // I might be wrong about this. This program doesn't crash, though -- I
+        // think that is a good sign.
+        let mut ffi_arrow_array: arrow2::ffi::ArrowArray = arrow2::ffi::ArrowArray::empty();
+        let state = duckdb_query_arrow_array(
+            result,
+            &mut &mut ffi_arrow_array as *mut _ as *mut *mut c_void, // Help me understand this!! I got it from duckdb-rs.
+        );
+        if state == duckdb_state_DuckDBError {
+            let error_message: *const c_char = duckdb_query_arrow_error(result);
+            let error_message = CStr::from_ptr(error_message).to_str().unwrap();
+            panic!("{}", error_message);
+        }
+
+        // Destroy the result struct. We're done with it.
+        duckdb_destroy_arrow(&mut result);
     }
 }
 
