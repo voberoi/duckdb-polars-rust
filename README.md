@@ -18,8 +18,7 @@ Credit to `kylebarron` on the Polars Discord for the following info if you use `
 
 ## Contributing
 
-Did you find an error? Is this example not up-to-date? Feel free to open a PR.
+Did you find an error? Is this example not up-to-date? Want to improve this code? Feel free to open a PR.
 
-A good next step from this code is to create an easier-to-use iterator
-over these query results. I leave that as an exercise for the reader
-(and future me).
+* The code uses a large unsafe block that can be reduced in size.
+* A good next step might be to create an easier-to-use iterator over these query results.
