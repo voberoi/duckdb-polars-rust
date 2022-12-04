@@ -5,6 +5,19 @@ to a Polars dataframe in Rust using DuckDB's Arrow query interface.
 
 It's best paired with this blog post: [not published yet].
 
+## Note
+
+The example here uses Rust's bindings for DuckDB C API,  [libduckdb-sys](https://lib.rs/crates/libduckdb-sys). A friendlier API exists in [duckdb-rs](https://crates.io/crates/duckdb),
+but as of publishing this code it does does not support DuckDB's nested types (lists, structs, maps).
+
+If you don't need those, you may be better off simply using [duckdb-rs](https://crates.io/crates/duckdb). The code to use Polars with results from that API will be different.
+
+Credit to `kylebarron` on the Polars Discord for the following info if you use `duckdb-rs` instead:
+
+> ... there are two different arrow implementations in rust, arrow and arrow2. The duckdb crate uses arrow while polars uses arrow2, so you can't automatically pass a polars chunk (i.e. an arrow2 record batch) to the duckdb crate. But you should be able to use the Arrow C data interface to pass data from arrow2 to arrow without a copy. So (I think) you should be able to do polars dataframe -> arrow2 chunks -> arrow ffi -> arrow record batches -> duckdb crate. And then not need to do any manual pointer work or any of your own unsafe code
+
+## Contributing
+
 Did you find an error? Is it not up-to-date? Feel free to open a PR.
 
 A good next step from this code is to create an easier-to-use iterator
