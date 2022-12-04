@@ -3,7 +3,7 @@
 This repo shows an end-to-end example of how to go from a DuckDB query
 to a Polars dataframe in Rust using DuckDB's Arrow query interface.
 
-It's best paired with this blog post: [not published yet].
+It's best paired with this blog post: [https://vikramoberoi.com/using-polars-on-results-from-duckdbs-arrow-interface-in-rust/](https://vikramoberoi.com/using-polars-on-results-from-duckdbs-arrow-interface-in-rust/)
 
 ## Note
 
