@@ -7,7 +7,7 @@ It's best paired with this blog post: [not published yet].
 
 ## Note
 
-The example here uses Rust's bindings for DuckDB C API,  [libduckdb-sys](https://lib.rs/crates/libduckdb-sys). A friendlier API exists in [duckdb-rs](https://crates.io/crates/duckdb),
+The example here uses Rust's bindings for DuckDB's C API,  [libduckdb-sys](https://lib.rs/crates/libduckdb-sys). A friendlier API exists in [duckdb-rs](https://crates.io/crates/duckdb),
 but as of publishing this code it does does not support DuckDB's nested types (lists, structs, maps).
 
 If you don't need those, you may be better off simply using [duckdb-rs](https://crates.io/crates/duckdb). The code to use Polars with results from that API will be different.
@@ -18,7 +18,7 @@ Credit to `kylebarron` on the Polars Discord for the following info if you use `
 
 ## Contributing
 
-Did you find an error? Is it not up-to-date? Feel free to open a PR.
+Did you find an error? Is this example not up-to-date? Feel free to open a PR.
 
 A good next step from this code is to create an easier-to-use iterator
 over these query results. I leave that as an exercise for the reader
